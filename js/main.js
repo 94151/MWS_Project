@@ -161,6 +161,7 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  image.alt="${restaurant.name}";
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
@@ -203,7 +204,8 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   /**
    * Register the service worker
    */
-  if ('serviceWorker' in navigator) {
+   document.addEventListener("DOMContentLoaded",event=>{
+    if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
     .then(function(registration) {
       // Registration was successful
@@ -214,6 +216,8 @@ addMarkersToMap = (restaurants = self.restaurants) => {
       console.log('Service Worker registration failed: ', err);
     });
   }
+});
+  
 
 
 

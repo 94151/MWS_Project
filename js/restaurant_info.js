@@ -88,6 +88,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
+  image.alt="${restaurant.name}";
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
@@ -192,3 +193,16 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+  document.addEventListener("DOMContentLoaded",event=>{
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+    .then(function(registration) {
+      // Registration was successful
+      console.log('Service Worker registered', registration.scope);
+    })
+    .catch(function(err) {
+      // Registration failed
+      console.log('Service Worker registration failed: ', err);
+    });
+  }
+});
